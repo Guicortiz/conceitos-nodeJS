@@ -1,98 +1,79 @@
-# Conceitos Back-end NODE.JS 📚
+# Conceitos Back-end Node.JS 📚
 ![Node.JS](https://isitics.com/wp-content/uploads/2019/06/2400%D1%851260-rw-blog-node-js.png)
     
 Conteudos aprendidos nessa aula:
-- Conceitos Node.JS
-- Conceitos API REST
-- Criar um projeto node.
-- Iniciar um servidor utilizando o express.
-- Metodos HTTP.
-- Testar rotas HTTP.
-- Tipos de parametros.
-- Servidor funcional
-- Middlewares.
+- [Oque é Node.JS?](/Content/ConceitosNode.MD) (criando)
+- [Oque é uma API?](/Content/ConceitosAPI.MD) (criando)
+- [Criar um projeto Node.JS](Content/CriarProjeto.MD)
+- [Iniciar um servidor utilizando o express](Content/IniciarServidor.MD)
+- [Sobre os metodos HTTP](Content/MetodosHTTP.MD)
+- [Testar rotas HTTP](Content/TestarRotasHTTP.MD) (criando)
+- [Sobre os tipos de parametros HTTP](Content/ParametrosHTTP.MD)
+- [Oque é um Middleware?](Content/Middlewares.MD)
+- [Criando uma aplicacao de tarefas](Content/AplicacaoTarefas.MD) (criando)
 
-__________
-## - Criando Projeto 📦:
+----------
+Todo conteudo foi aprendido no primeiro modulo da GoStack, otimo curso de programacao da [RocketSeat](https://rocketseat.com.br/)
 
-1. Criar uma pasta para armazenar o projeto. exemplo ( terminal unix ):
-```shell
-mkdir conceitos_back-end && cd conceitos_back-end
+----------
+
+![alt](https://riis.com/wp-content/uploads/2017/07/api.jpg)
+
+## Iniciando API de tarefas ⚒
+1. Baixando repositorio em sua maquina. rode o comando no terminal.
 ```
-2. Rodar comando no terminal para iniciar projeto com gerenciamento de pacotes.
-```shell
-yarn init -y
+git clone https://github.com/Guicortiz/conceitos-nodeJS.git && cd conceitos-nodeJS
 ```
-3. Terminal irá retornar o seguinte: success Saved package.json e criara o arquivo na raiz do projeto. Esse arquivo fara todos gerenciamento de pacotes e scripts do projeto.
-```json 
+2. Apos baixar o repositorio do git e abrir a pasta, abra o projeto no visual studio code ou seu editor de preferencia. rode o comando no terminal.
+```
+code .
+```
+3. Pronto o projeto estará aberto em seu editor de codigo e pronto para uso. para iniciar o projeto. Rode o comando no terminal.
+```
+yarn dev
+```
+----------
+## Rotas da API de tarefas 💻
+- [GET] localhost:3333/tasks  
+`Retornara todas tarefas cadastradas na API.`
+
+![alt](images/retornogetsemparametro.png?raw=true "Retorno Get")
+
+- [GET] localhost:3333/tasks?category=Trabalho   
+`Retornara apenas tarefas que tenha a palavra Trabalho na categoria da tarefa cadastrada na API.`
+
+![alt](images/retornogetparametro.png?raw=true "Retorno Get com parametro")
+- [POST] localhost:3333/tasks   
+`Ira cadastrar uma tarefa com descricão e categoria. Todas tarefas estão sendo sinalizadas como não finalizadas (finish = false )`
+```javascript
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "license": "MIT"
+  //Caso nao for enviada categoria sera definido como noCategory.
+  "category":"Nome da catergoria"
+  //Obrigatorio enviar uma descricão da tarefa.
+	"description":"Finalizar aula de conceitos do back-end."
 }
 ```
-----------
-## - Iniciar servidor utilizando express 💻:
 
-1. Primeiramente criar um arquivo chamado `index.js` caso prefira crie uma pasta chamada `src` para guardar todos arquivos do seu projeto.
-2. Adicione o pacote express no seu projeto. utilizando comando no terminal ( unix )
-```shell
-yarn add express
-```
-3. Isso ira adicionar o express dentro da pasta do seu projeto permitindo voce usar ele no seu projeto.
-4. abra o arquivo `index.js` dentro do seu editor de texto.
-5. Coloque as seguintes linhas de comando dentro do seu `index.js`.
-```javascript
-//Importando o express para dentro do seu servidor.
-const express = require('express');
+![alt](images/retornopost.png?raw=true "Retorno Post")
 
-//Iniciando o express no seu servidor.
-const server = express();
+- [PUT] localhost:3333/tasks/:id   
+`Irá definir o campo finish como true para o id enviado no parametro da rota`
 
-//Retornando mensagem quando acessado localhost/3333 no navegador web.
-server.get('/', (request,response) => {
-  return response.get("Meu primeiro projeto em Node.JS e Express");
-})
+![alt](images/retornoupdate.png?raw=true "Retorno Update")
 
-//Escutando a porta 3333 na rota localhost
-server.listen(3333, () => {
-  console.log('📦 Servidor iniciado!')
-})
-```
-6. execute o seguinte comando no terminal (unix).
-```node
-node index.js
-``` 
-7. O resultado será o seguinte:  
-![alt](images/helloworld.png?raw=true "Hello world")
+- [DELETE] localhost:3333/tasks/:id   
+`Irá DELETAR uma tarefa da lista de tarefas. retorno apenas de status code 204`
 
----------
-
-## Metodos HTTP:
-  1. GET: Buscar informacoes do back-end.
-  2. POST: Criar uma informacao no back-end.
-  3. PUT/PATCH: Alterar informacao no back-end.
-  4. DELETE: Deletar dado no back-end.
-
-----------
-
-## Tipos de parametros:
-  1. Query Params: filtros e paginacao. Utilizado na maioria das vezes em rotas GET, utilizando um ponto de interrogacao `?`.
-  Exemplo:
-  ```
-  localhost:3333/conceitos?nome=Guilherme
-  ```
-  1. Route Params: Indentificar recursos(Atualizar/Deletar).
-  Exemplo:
-  ```
-  localhost:3333/conceitos/1
-  ```
-  2. Request Body: Conteudo na hora de criar ou editar um recurso.  
+![alt](images/retornodelete.png?raw=true "Retorno Delete")
 
 
 ----------
+# CRIADOR DO PROJETO [GUICORTIZ](https://github.com/Guicortiz)
+Projeto criado para aprendizado e ajudar novos desenvolvedores a programar em Node.JS  
   
-## Middleware
+Qualquer colaboracao é bem vinda. se possivel compartilhar 💙
+![alt](https://avatars2.githubusercontent.com/u/32350762?s=460&u=1f2572701fb8f7ccdb1d7b0c9cf1d9677a8f6610&v=4)
 
-- Interceptador de requisisoes: interrompendo ou alterando dados da requisicao.
+
+  
+

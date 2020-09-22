@@ -39,9 +39,9 @@ app.get('/tasks', (request,response) => {
 })
 
 app.post('/tasks', (request, response) => {
-  const {category, description} = request.body;
+  const {category = "noCategory", description} = request.body;
 
-  const task = {id: uuid(), category, description, finish: false};
+  const task = {id: uuid(), category , description, finish: false};
 
   tasks.push(task)
 
