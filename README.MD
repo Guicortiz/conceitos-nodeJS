@@ -75,5 +75,7 @@ Qualquer colaboracao é bem vinda. se possivel compartilhar 💙
 ![alt](https://avatars2.githubusercontent.com/u/32350762?s=460&u=1f2572701fb8f7ccdb1d7b0c9cf1d9677a8f6610&v=4)
 
 
-  
+Colaborando nesse projeto lindo que ensina as pessoas criarem um servidor em express.
+Leia todo arquivo e crie seu servidor!
+# Server
 
